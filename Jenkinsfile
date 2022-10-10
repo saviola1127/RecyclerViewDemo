@@ -1,13 +1,19 @@
 pipeline {
   agent any
   stages {
-    stage('Fetch code') {
+    stage('fetch') {
       agent any
       steps {
         git(url: 'https://github.com/saviola1127/RecyclerViewDemo.git', branch: 'main')
-        sh 'sh "./gradle assembleDebug"'
       }
     }
 
+      stage('build') {
+      agent any
+      steps {
+        git(url: 'https://github.com/saviola1127/RecyclerViewDemo.git', branch: 'main')
+        sh "./gradle assembleDebug"
+      }
+    }
   }
 }
